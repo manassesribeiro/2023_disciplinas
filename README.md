@@ -8,14 +8,14 @@ Para acessar os conteúdos escolha uma das pastas:
 
    ### EDI - Disciplina de Estrutura de dados I (3ª fase BCC)
    Repositório de arquivos de exemplos de implementação da disciplina de EDI estão organizados em:
-    - C - Exemplos de implementações em C
-        - Revisão de Algoritmos
-            - Alocação dinâmica de memória
-        - Lista encadeada simples
-    - Python - Exemplos desenvolvidos em Python
-        - Lista encadeada dupla
-        - Fila
-        - Fila de prioridades
+   - C - Exemplos de implementações em C
+       - Revisão de Algoritmos
+           - Alocação dinâmica de memória
+       - Lista encadeada simples
+   - Python - Exemplos desenvolvidos em Python
+       - Lista encadeada dupla
+       - Fila
+       - Fila de prioridades
 
 
 ## EMI - Ensino Médio Integrado
