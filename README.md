@@ -6,8 +6,8 @@ Para acessar os conteúdos escolha uma das pastas:
    - ALG - Arquivos em portugol: correções e exercícios resolvidos em portugol
    - C - Arquivos em C: correções e exercícios resolvidos em C
 
-    ### EDI - Disciplina de Estrutura de dados I (3ª fase BCC)
-    Repositório de arquivos de exemplos de implementação da disciplina de EDI estão organizados em:
+   ### EDI - Disciplina de Estrutura de dados I (3ª fase BCC)
+   Repositório de arquivos de exemplos de implementação da disciplina de EDI estão organizados em:
     - C - Exemplos de implementações em C
         - Revisão de Algoritmos
             - Alocação dinâmica de memória
