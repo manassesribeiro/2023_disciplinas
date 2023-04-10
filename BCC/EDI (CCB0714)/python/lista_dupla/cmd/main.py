@@ -1,7 +1,7 @@
 import sys
 sys.path.append(".")
 
-from model.lista_dupla import ListaDupla
+from lista_dupla.model.lista_dupla import ListaDupla
 
 def main():
     lista = ListaDupla()
