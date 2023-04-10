@@ -2,8 +2,6 @@
 *.pyc
 __pycache__/
 BCC/EDI(CCB0714)/python/estacionamento
-#BCC/EDI(CCB0714)/python/fila/model/__pycache__
-#BCC/EDI(CCB0714)/python/lista_dupla/model/__pycache__
-#BCC/EDI(CCB0714)/python/venv
-#BCC/EDI(CCB0714)/python/lista_dupla/model/__pycache__
 venv/
+.gitignore
+.vscode/
