@@ -1,12 +1,12 @@
 # Repositório de exemplos e códigos das disciplinas lecionadas em 2023.
 
 ## Para acessar os conteúdos escolha uma das pastas:
-    - BCC - Bacharelado em Ciência da Computação
-        - Algoritmos(CCC0701): Disciplina de Algoritmos (1ª fase BCC)
-            Arquivos de exemplos e correções de exercícios da disciplina de Algoritmos
+- BCC - Bacharelado em Ciência da Computação
+    - Algoritmos(CCC0701): Disciplina de Algoritmos (1ª fase BCC)
+        Arquivos de exemplos e correções de exercícios da disciplina de Algoritmos
 
-        - ALG - Arquivos em portugol
-            Correções e exercícios resolvidos em portugol
+    - ALG - Arquivos em portugol
+        Correções e exercícios resolvidos em portugol
 
 ##### C - Arquivos em C
 Correções e exercícios resolvidos em C
