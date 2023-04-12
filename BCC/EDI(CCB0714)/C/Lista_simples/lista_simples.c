@@ -36,13 +36,20 @@ int main(){
 
     percorreListaHeadTail(lista1);
 
+    printf("remove\n");
     removeElementoNaLista(lista1, NULL);
+    printf("percorre\n");
     percorreListaHeadTail(lista1);
-    
-    pivo = encontraElementoNaLista(lista1, 10);
-    if (pivo != NULL)
-        removeElementoNaLista(lista1, pivo);
 
+    printf("encontra\n");
+
+    pivo = encontraElementoNaLista(lista1, 10);
+    if (pivo != NULL){
+        printf("remove depois do encontra\n");
+        removeElementoNaLista(lista1, pivo);
+    }
+
+    percorreListaHeadTail(lista1);
     return 0;
 }
 
@@ -77,7 +84,7 @@ Lista* criaLista(){
 int insereElementoNaLista(Lista* lista, Nodo* pivo, int dado){
     Nodo* novo = criaNodo(dado);
     if (novo == NULL)
-        return NULL; //Retorna NULL que indica que não foi possível alocar memoria
+        return -1; //Retorna NULL que indica que não foi possível alocar memoria
 
 	if (pivo == NULL){
 		if (lista->size == 0)
@@ -108,28 +115,25 @@ int removeElementoNaLista(Lista* lista, Nodo* pivo){
 	Nodo* antigo;
 
 	if (listaVazia(lista))
-		return NULL; //Retorna NULL indicando que a lista está vazia
+		return -1; //Retorna NULL indicando que a lista está vazia
 	
-	if (pivo == NULL)
+	if (pivo == NULL){
 		antigo = lista->head;
 		lista->head = lista->head->next;
 
 		if (lista->head == NULL)
 			lista->tail = NULL;
-	else
+    } else{
 		if (pivo->next == NULL)
-			return NULL; //Retorna NULL indicando que o pivô é o último elemento da lista
+			return -2; //Retorna NULL indicando que o pivô é o último elemento da lista
 		
 		antigo = pivo->next;
-		pivo->next=pivo -> next->next
-		se (elemento_pivo -> next == NULL)‏
-			lista -> tail = elemento_pivo;
-	fimse
-		
-	liberaMemoria(elemento_antigo)‏;
-
-	atualizaTamanhoDaLista();
-
+		pivo->next=pivo -> next->next;
+		if (pivo -> next == NULL)
+			lista -> tail = pivo;
+    }
+	free(antigo);
+    lista->size--;
 }
 
 void percorreListaHeadTail(Lista* lista){
@@ -150,9 +154,11 @@ Nodo* encontraElementoNaLista(Lista* lista, int dado){
 
     if (nodo == NULL)
         return NULL;
-    
-    while(nodo != NULL){
-        if (nodo->dado == dado)
+    if (nodo->dado == dado)
+        return NULL;
+
+    while(nodo->next != NULL){
+        if (nodo->next->dado == dado)
             return nodo;
         nodo = nodo->next;
     }

@@ -9,42 +9,42 @@ typedef struct{
     int item[TAM];
 } Pilha;
 
-Pilha* criaPilha(){
+/* Pilha* criaPilha(){
     Pilha* pilha;
     pilha = (Pilha*) malloc(sizeof(Pilha));
     pilha->topo = -1;
     
     return pilha;
 }
-
-void push(Pilha *pilha, int i){
-    pilha->item[++pilha->topo] = i;
+ */
+void push(Pilha pilha, int i){
+    pilha.item[++pilha.topo] = i;
 }
 
-int pop(Pilha *pilha){
-    if(pilha->topo >= 0){
-        return pilha->item[pilha->topo--];
+int pop(Pilha pilha){
+    if(pilha.topo >= 0){
+        return pilha.item[pilha.topo--];
     } else {
         printf("pilha vazia\n");
     }
 }
 
-int empty(Pilha *pilha){
-    if(pilha->topo<0){
+int empty(Pilha pilha){
+    if(pilha.topo<0){
         return 1;
     }else{
         return 0;
     }
 }
 
-int stackTop(Pilha *pilha){
-    return pilha->item[pilha->topo];
+int stackTop(Pilha pilha){
+    return pilha.item[pilha.topo];
 }
 
 
 int main() {
-    Pilha *pilha;
-    pilha = criaPilha();
+    Pilha pilha;
+//    pilha = criaPilha();
     int i=1;
 
     /*
