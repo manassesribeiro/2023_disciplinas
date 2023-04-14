@@ -23,37 +23,6 @@ void percorreListaHeadTail(Lista*);
 Nodo* encontraElementoNaLista(Lista*, int);
 
 //Implementação
-int main(){
-    Lista* lista1;
-    Nodo* pivo;
-
-    lista1 = alocaMemoriaLista();
-    insereElementoNaLista(lista1, NULL, 10);
-    insereElementoNaLista(lista1, lista1->head, 5);
-    insereElementoNaLista(lista1, lista1->tail, 7);
-    insereElementoNaLista(lista1, NULL, 19);
-    insereElementoNaLista(lista1, lista1->head, 22);
-
-    percorreListaHeadTail(lista1);
-
-    printf("remove\n");
-    removeElementoNaLista(lista1, NULL);
-    printf("percorre\n");
-    percorreListaHeadTail(lista1);
-
-    printf("encontra\n");
-
-    pivo = encontraElementoNaLista(lista1, 10);
-    if (pivo != NULL){
-        printf("remove depois do encontra\n");
-        removeElementoNaLista(lista1, pivo);
-    }
-
-    percorreListaHeadTail(lista1);
-    return 0;
-}
-
-
 Nodo* alocaMemoriaNodo(){
     return (Nodo*) malloc(sizeof(Nodo));
 }
@@ -113,6 +82,7 @@ int listaVazia(Lista* lista){
 
 int removeElementoNaLista(Lista* lista, Nodo* pivo){
 	Nodo* antigo;
+    int dado;
 
 	if (listaVazia(lista))
 		return -1; //Retorna NULL indicando que a lista está vazia
@@ -132,8 +102,10 @@ int removeElementoNaLista(Lista* lista, Nodo* pivo){
 		if (pivo -> next == NULL)
 			lista -> tail = pivo;
     }
+    dado = antigo->dado;
 	free(antigo);
     lista->size--;
+    return dado;
 }
 
 void percorreListaHeadTail(Lista* lista){
