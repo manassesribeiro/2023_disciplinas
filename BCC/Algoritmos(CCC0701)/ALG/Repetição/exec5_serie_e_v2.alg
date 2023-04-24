@@ -1,21 +1,21 @@
 /*
     Escrever um algoritmo que lê um valor N inteiro e positivo
     e que calcula e escreve o valor de E:   
-	               1     1     1       1 
-        E = 1  +  --- + --- + --- ... ---
-                   1     2     3       N
+	    E = 1 + 1 / 1 + 1 / 2 + .. + 1 / N
 */
 
-Algoritmo Exec4
+Algoritmo Exec5_v2
 inicio
     inteiro n, cont; 
-    real e; //variavel acumuladora
+    real e, fat; //variavel acumuladora
     cont = 1;
+    fat = 1;
     e = 1;
     leia (n);
-    enquanto (cont <= n)
+    enquanto (cont <= n) faça
     inicio
-        e = e + (1 / cont);
+        fat = fat * cont;
+        e = e + (1 / fat);
         cont = cont + 1;
     fim
     escreva(e);
