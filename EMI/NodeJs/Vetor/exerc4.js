@@ -4,8 +4,8 @@ Ler do teclado 12 números inteiros e armazená-los em um vetor N. Em seguida, c
 const prompt = require("prompt-sync")({ sigint: true });
 const TAM=12;
 var n=[];
-var x=[];
-var y=[];
+var x=[]; //para guardar os pares divisíveis por 3
+var y=[]; // para guardar os ímpares divisíveis por 5
 let contX, contY;
 contX = contY = 0;
 

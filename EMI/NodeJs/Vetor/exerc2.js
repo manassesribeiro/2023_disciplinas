@@ -1,5 +1,5 @@
 /*
-Escreva um programa em C que leia um vetor de 20 posições e escreva a posição de cada um dos elementos cujo valor seja igual a 10.
+Escreva um programa que leia um vetor de 20 posições e escreva a posição de cada um dos elementos cujo valor seja igual a 10.
 */
 const prompt = require("prompt-sync")({ sigint: true });
 const TAM=20;
