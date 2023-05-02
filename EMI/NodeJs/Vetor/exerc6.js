@@ -27,6 +27,6 @@ for (let i=0; i < N; i++){
 }
 
 // procedimento para escrever o vetor 3
-for (let i=0; i < N*2; i++){
+for (let i=0; i < j; i++){
     console.log("vet3[" + i + "]: " + vet3[i]);
 }
