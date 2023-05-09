@@ -23,7 +23,7 @@ class HashTable():
     def hash(self, value, size):
         return (value % size)
     
-    def insert(self):
+    def insert(self, key, value):
         pass
 
     def remove(self):
