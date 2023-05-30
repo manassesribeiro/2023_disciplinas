@@ -19,14 +19,25 @@ class Pessoa{
     falar(mensagem){
         console.log(this._nome + " fala: " + mensagem);
     }
+
+    // método set idade
+    set idade(idade){
+        this._idade = idade
+    }
+    // método set idade
+    set profissao(profissao){
+        this._profissao = profissao
+    }
+
     // método get idade
-    idade(){
+    get idade(){
         return this._idade;
     }
     // Método get profissão
-    profissao(){
+    get profissao(){
         return this._profissao;
     }
+
 }
 
 // Exemplo de instância de um objeto da classe Pessoa
@@ -41,5 +52,11 @@ pessoa1.andar("norte", 25);
 pessoa1.correr("sul", 250, "12 km/h");
 pessoa1.falar("Meu nome é João, mas pode me chamar de Jhon.");
 
-console.log("idade: " + pessoa1.idade());
-console.log("profissão: %s", pessoa1.profissao());
+console.log("idade: " + pessoa1.idade);
+console.log("profissão: %s", pessoa1.profissao)
+
+pessoa1.idade = 44
+pessoa1.profissao = "padeiro"
+
+console.log("Idade: %s", pessoa1.idade)
+console.log("Profissão: %s", pessoa1.profissao)
