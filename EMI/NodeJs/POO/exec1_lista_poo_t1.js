@@ -37,7 +37,6 @@ class Salario{
         }   
     }
 
-    // verifica Faixa do IR e Encargos
     verificaFaixaIREncargos(remuneracao){
         if (remuneracao < 800.0){
             this._percIR = 0.0;
@@ -51,17 +50,15 @@ class Salario{
         }
     }
 
-    // calcula o salário líquido
     calcularSalarioLiquido(){
-        // Calcula o valor das horas extras trabalhadas
+
         let _vlrHorasExtras = this.calcularValorHorasExtras(50);
-        // calcular a remuneração = salario bruto + horas extras
+
         let _remuneracao = this._salarioBruto + _vlrHorasExtras;
         
-        // verifica a faixa do IR e dos Encargos
+
         this.verificaFaixaIREncargos(_remuneracao);
         
-        //calcula os descontos de IR e Encargos
         let _vlrIR = _remuneracao * (this._percIR / 100);
         let _vlrEncargos = _remuneracao * (this._percEncargos / 100);
 
