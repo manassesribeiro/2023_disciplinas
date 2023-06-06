@@ -4,9 +4,10 @@ class Salario{
         this._horasTrab = horas;
         this._mes = mes;
         this._horasContrato = horasContrato;
-        this._ir = 0.0; //imposto de renda
+        this._ir = 0.0; 
         this._encargos = 0.0;
     }
+    
     get salarioBruto(){
         return this._salarioBruto;
     }
@@ -18,10 +19,10 @@ class Salario{
     }
 
     verificaValorIREncargos(remuneracao){
-        if (remuneracao < 800){ //Faixa 1
+        if (remuneracao < 800){
             this._ir = 0.0;
             this._encargos = 0.00;
-        } else if(remuneracao >=800 && remuneracao < 1600){ // Faixa 2
+        } else if(remuneracao >=800 && remuneracao < 1600){
             console.log(remuneracao)
             this._ir = 8.0;
             this._encargos = 5.00;
