@@ -1,11 +1,26 @@
 class Salario{
-    constructor(salarioBruto, horasTrab, horasContratual, mes){
+    constructor(salarioBruto, horasTrab, horasContratual, mes, salarioMinimo, qtdeFilhosMenores, qtdePessoasFamilia){
         this._salarioBruto = salarioBruto;
         this._horasTrab = horasTrab;
         this._mes = mes;
         this._horasContratual = horasContratual;
         this._percIR = 0.0;
         this._percEncargos = 0.0;
+        this._salarioMinimo = salarioMinimo;
+        this._qtdeFilhosMenores = qtdeFilhosMenores;
+        this._qtdePessoasFamilia = qtdePessoasFamilia;
+    }
+    get irpf(){
+        return this._percIR;
+    }
+    get encargos(){
+        return this._percEncargos;
+    }
+    get salarioMinimo(){
+        return this._salarioMinimo;
+    }
+    get qtdeFilhosMenores(){
+        return this._qtdeFilhosMenores;
     }
 
     get salarioBruto(){
@@ -24,7 +39,6 @@ class Salario{
         return (this._horasTrab - this._horasContratual);
     }
 
-    //
     calcularValorHorasExtras(percHoraExtra){
         let _valorHora = (this._salarioBruto / this._horasContratual);
         _valorHora = _valorHora * (1 + percHoraExtra / 100);
@@ -50,23 +64,58 @@ class Salario{
         }
     }
 
-    calcularSalarioLiquido(){
+    calculaIRPF(percentualHorasExtras=20){
+        let remuneracao = this.calculaRemuneracao(percentualHorasExtras)
+        this.verificaFaixaIREncargos(remuneracao);
+        return (remuneracao * (this._percIR / 100));
+    }
+    calculaEncargos(percentualHorasExtras=20){
+        let remuneracao = this.calculaRemuneracao(percentualHorasExtras)
+        this.verificaFaixaIREncargos(remuneracao);
+        return remuneracao * (this._percEncargos / 100);
+    }
 
-        let _vlrHorasExtras = this.calcularValorHorasExtras(50);
+    calculaRemuneracao(percentualHorasExtras=20){
+        let _vlrHorasExtras = this.calcularValorHorasExtras(percentualHorasExtras);
+        return (this._salarioBruto + _vlrHorasExtras);
+    }
 
-        let _remuneracao = this._salarioBruto + _vlrHorasExtras;
-        
+    calcularSalarioLiquido(percentualHorasExtras=20){
+        let _remuneracao = this.calculaRemuneracao(percentualHorasExtras)
 
-        this.verificaFaixaIREncargos(_remuneracao);
-        
-        let _vlrIR = _remuneracao * (this._percIR / 100);
-        let _vlrEncargos = _remuneracao * (this._percEncargos / 100);
+        let _vlrIR = this.calculaIRPF(percentualHorasExtras);
+        let _vlrEncargos = this.calculaEncargos(percentualHorasExtras);
 
-        let _salarioLiquido = _remuneracao - _vlrIR - _vlrEncargos;
+        let _salarioLiquido = _remuneracao - _vlrIR - _vlrEncargos + this.calculaSalarioFamilia(5);
         return _salarioLiquido
     }
-}
 
-const salario = new Salario(1000, 120, 100, "mes");
-console.log("Valor horas extras: " + salario.calcularValorHorasExtras(20));
-console.log("Valor salário líquido: " + salario.calcularSalarioLiquido());
+    calculaRendaPerCapita(){
+        return (this._salarioBruto / this._qtdePessoasFamilia);
+    }
+
+    calculaValorSalarioFamiliaIndividual(percentualSalarioFamilia){
+        return this._salarioMinimo * percentualSalarioFamilia/100;
+    }
+
+    calculaSalarioFamilia(percentualSalarioFamilia){
+        let rendaPerCapita = this.calculaRendaPerCapita();
+        if (rendaPerCapita <= this._salarioMinimo){
+            let valorSalarioFamiliaIndividual = this.calculaValorSalarioFamiliaIndividual(percentualSalarioFamilia);
+            let salarioFamilia = (valorSalarioFamiliaIndividual * this._qtdeFilhosMenores);
+            return salarioFamilia;
+        } else {
+            return 0.0;
+        }
+    }
+}
+const percentualHorasExtras = 50;
+const percentualSalarioFamilia = 5;
+const salario = new Salario(5000, 236, 220, "Junho/2023", 1320, 2, 4);
+console.log("Mês de referencia: " + salario.mes);
+console.log("\t(+) Salario bruto: " + salario.salarioBruto.toFixed(2));
+console.log("\t(+) Valor horas extras: " + salario.calcularValorHorasExtras(percentualHorasExtras).toFixed(2));
+console.log("\t(+) Valor salario familia: " + salario.calculaSalarioFamilia(percentualSalarioFamilia).toFixed(2));
+console.log("\t(-) Encargos: " + salario.calculaEncargos(percentualHorasExtras).toFixed(2));
+console.log("\t(-) IRPF: " + salario.calculaIRPF(percentualHorasExtras).toFixed(2));
+console.log("\t(=) Valor salário líquido: " + salario.calcularSalarioLiquido().toFixed(2));
