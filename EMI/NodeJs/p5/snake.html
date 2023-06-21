@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let snake;
+      let food;
+      let gridSize = 20;
+      let gameSpeed = 10;
+
+      function setup() {
+        createCanvas(400, 400);
+        snake = new Snake();
+        placeFood();
+        frameRate(gameSpeed);
+      }
+
+      function draw() {
+        background(220);
+
+        if (snake.eat(food)) {
+          placeFood();
+        }
+
+        snake.update();
+        snake.display();
+
+        if (snake.gameOver()) {
+          background(255, 0, 0);
+          textSize(40);
+          textAlign(CENTER);
+          text('Game Over', width / 2, height / 2);
+          noLoop();
+        }
+
+        fill(255, 0, 0);
+        rect(food.x, food.y, gridSize, gridSize);
+      }
+
+      function keyPressed() {
+        if (keyCode === UP_ARROW) {
+          snake.setDirection(0, -1);
+        } else if (keyCode === DOWN_ARROW) {
+          snake.setDirection(0, 1);
+        } else if (keyCode === LEFT_ARROW) {
+          snake.setDirection(-1, 0);
+        } else if (keyCode === RIGHT_ARROW) {
+          snake.setDirection(1, 0);
+        }
+      }
+
+      function placeFood() {
+        let cols = floor(width / gridSize);
+        let rows = floor(height / gridSize);
+        food = createVector(floor(random(cols)), floor(random(rows)));
+        food.mult(gridSize);
+      }
+
+      class Snake {
+        constructor() {
+          this.body = [];
+          this.body[0] = createVector(0, 0);
+          this.xDirection = 1;
+          this.yDirection = 0;
+        }
+
+        setDirection(x, y) {
+          this.xDirection = x;
+          this.yDirection = y;
+        }
+
+        update() {
+          let head = this.body[this.body.length - 1].copy();
+          this.body.shift();
+          head.x += this.xDirection * gridSize;
+          head.y += this.yDirection * gridSize;
+          this.body.push(head);
+        }
+
+        display() {
+          for (let i = 0; i < this.body.length; i++) {
+            rect(this.body[i].x, this.body[i].y, gridSize, gridSize);
+          }
+        }
+
+        eat(food) {
+          let head = this.body[this.body.length - 1];
+          if (head.x === food.x && head.y === food.y) {
+            this.body.push(createVector(food.x, food.y));
+            return true;
+          }
+          return false;
+        }
+
+        gameOver() {
+          let head = this.body[this.body.length - 1];
+          if (
+            head.x > width - gridSize ||
+            head.x < 0 ||
+            head.y > height - gridSize ||
+            head.y < 0
+          ) {
+            return true;
+          }
+          for (let i = 0; i < this.body.length - 1; i++) {
+            let part = this.body[i];
+            if (part.x === head.x && part.y === head.y) {
+              return true;
+            }
+          }
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
