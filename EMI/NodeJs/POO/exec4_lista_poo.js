@@ -43,17 +43,11 @@ class Veiculo {
             return "Diesel";
     }
     
-    get modelo(){
-        return this._modelo;
-    }
+    get modelo(){return this._modelo;}
 
-    get chassi(){
-        return this._chassi;
-    }
+    get chassi(){return this._chassi;}
 
-    get cor(){
-        return this._cor;
-    }
+    get cor(){return this._cor;}
 
     get ano(){
         return this._ano;
@@ -64,16 +58,44 @@ class Veiculo {
     }
 }
 
-const dono1 = new Proprietario("João da Silva", "Rua C, 128", "Videira", "SC");
-const carro1 = new Veiculo(dono1, 1, "Onix", "ABC1234X124", "Vermelho", "2023", "ACB1234");
+class AssociaVeiculoProprietario{
+    constructor(){
+        this._veiculos=[];
+    }
+    get veiculos(){
+        return this._veiculos;
+    }
+    novoProprietario(nome, endereco, cidade, estado){
+        return new Proprietario(nome, endereco, cidade, estado);
+    }
+    novoVeiculo(proprietario, tipoCombustivel, modelo, chassi, cor, ano, placa){
+        return new Veiculo(proprietario, tipoCombustivel, modelo, chassi, cor, ano, placa);
+    }
+    entradaDosDados(){
+        console.log("\n\nInforme os dados do Proprietário:")
+        let nome = prompt("\tInforme o nome: ");
+        let endereco = prompt("\tInforme o endereço: ");
+        let cidade = prompt("\tInforme a cidade: ");
+        let estado = prompt("\tInforme o estado: ");        
+        let proprietario = this.novoProprietario(nome, endereco, cidade, estado);
 
-console.log("Proprietario: " + carro1.proprietario.nome);
-console.log("\tEndereço: " + carro1.proprietario.endereco);
-console.log("\tCidade/Estado: " + carro1.proprietario.cidade + "/" + carro1.proprietario.estado);
+        console.log("\n\nInforme os dados do Veículo:")
+        let combustivel = prompt("\tInforme o tipo de combusível (1: gasolina; 2: Alcool; 3: Diesel): ");
+        let modelo = prompt("\tInforme o modelo: ");
+        let chassi = prompt("\tInforme o chassi: ");
+        let cor = prompt("\tInforme a cor: ");        
+        let ano = prompt("\tInforme o ano: ");        
+        let placa = prompt("\tInforme a placa: ");        
+        let veiculo = this.novoVeiculo(proprietario, combustivel, modelo, chassi, cor, ano, placa);
 
-console.log("Dados do veículo")
-console.log("\tModelo: " + carro1.modelo);
-console.log("\tAno: " + carro1.ano);
-console.log("\tCor: " + carro1.cor);
-console.log("\tPlaca: " + carro1.placa);
-console.log("\tCombustivel: " + carro1.combustivel);
+        this.veiculos.push(veiculo);
+    }
+
+}
+const prompt = require("prompt-sync")({ sigint: true });
+const veiculos = new AssociaVeiculoProprietario();
+for (let i=0; i < 3; i++){
+    veiculos.entradaDosDados();
+}
+
+console.log(veiculos.veiculos)
