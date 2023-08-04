@@ -15,6 +15,9 @@ typedef struct{
 Nodo* criaNodo(int);
 Nodo* inserir(Nodo*, int);
 ABB* criaABB();
+void insereNaABB(ABB*, int);
+void escreveABB(ABB*);
+
 void emOrdem(Nodo*);
 
 Nodo* buscar(int);
@@ -26,13 +29,26 @@ int main(){
     ABB* abb;
     abb = criaABB();
 
-    abb->raiz = inserir(abb->raiz, 7);
-    inserir(abb->raiz, 8);
-    inserir(abb->raiz, 6);
-    inserir(abb->raiz, 12);
-    emOrdem(abb->raiz);
+    insereNaABB(abb, 7);
+    insereNaABB(abb, 8);
+    insereNaABB(abb, 6);
+    insereNaABB(abb, 12);
+    escreveABB(abb);
 
     return 0;
+}
+
+void escreveABB(ABB *abb){
+    printf("Valores na ABB:\n");
+    if (abb != NULL && abb->raiz != NULL)
+        emOrdem(abb->raiz);
+    else
+        printf("Arvore vazia!\n");
+}
+
+void insereNaABB(ABB *abb, int valor){
+    if (abb != NULL)
+        abb->raiz = inserir(abb->raiz, valor);
 }
 
 Nodo* criaNodo(int dado){
