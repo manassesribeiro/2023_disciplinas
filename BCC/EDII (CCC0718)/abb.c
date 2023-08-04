@@ -17,7 +17,8 @@ Nodo* inserir(Nodo*, int);
 ABB* criaABB();
 void insereNaABB(ABB*, int);
 void escreveABB(ABB*);
-
+void liberaMemoriaABB(Nodo*);
+void removeABB(ABB*);
 void emOrdem(Nodo*);
 
 Nodo* buscar(int);
@@ -38,6 +39,20 @@ int main(){
     return 0;
 }
 
+void removeABB(ABB* abb){
+    if (abb != NULL){
+        liberaMemoriaABB(abb->raiz);
+        free(abb);
+    }
+}
+
+void liberaMemoriaABB(Nodo* nodo) {
+    if (nodo != NULL) {
+        liberaMemoriaABB(nodo->esq);
+        liberaMemoriaABB(nodo->dir);
+        free(nodo);
+    }
+}
 void escreveABB(ABB *abb){
     printf("Valores na ABB:\n");
     if (abb != NULL && abb->raiz != NULL)
