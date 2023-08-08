@@ -36,6 +36,7 @@ int main(){
     insereNaABB(abb, 12);
     escreveABB(abb);
 
+    removeABB(abb);
     return 0;
 }
 
