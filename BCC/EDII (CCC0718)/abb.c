@@ -38,6 +38,7 @@ int main(){
     insereNaABB(abb, 10);
     insereNaABB(abb, 9);
     insereNaABB(abb, 12);
+    escreveABB(abb);
 
     buscar(abb->raiz, 16);
 
@@ -106,7 +107,7 @@ void liberaMemoriaABB(Nodo* nodo) {
     }
 }
 void escreveABB(ABB *abb){
-    printf("Valores na ABB:\n");
+    printf("\nValores na ABB:\n");
     if (abb != NULL && abb->raiz != NULL)
         emOrdem(abb->raiz);
     else
@@ -154,14 +155,10 @@ Nodo* inserir(Nodo* nodo, int dado){
 }
 
 Nodo* buscar(Nodo* nodo, int dado){
-    if (nodo == NULL){
-        return nodo;
-    }
-    
     if (dado > nodo->dado){
-        nodo->dir = buscar(nodo->dir, dado);
+        buscar(nodo->dir, dado);
     } else if (dado < nodo->dado){
-        nodo->esq = buscar(nodo->esq, dado);
+        buscar(nodo->esq, dado);
     } else
         printf("\nNodo com valor '%i' encontrado\n", nodo->dado);
 }
