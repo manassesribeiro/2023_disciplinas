@@ -139,7 +139,7 @@ void escreveLista(Lista* lista){
     Nodo *nodo;
 
     if (listaVazia(lista))
-        printf("\nLista vazia!\n");
+         trataErro(-1);
     else {
         printf("\nElementos da lista: \n");
         nodo = lista->head;
