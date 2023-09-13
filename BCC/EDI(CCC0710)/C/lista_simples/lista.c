@@ -23,34 +23,34 @@ void escreveLista(Lista*);
 
 Nodo* buscar(Lista*, int);
 
-int main(){
-    Lista *minhaLista;
-    minhaLista = criaLista();
+// int main(){
+//     Lista *minhaLista;
+//     minhaLista = criaLista();
 
-    // Para inserir elementos
-    inserir(minhaLista, NULL, 10);
-    inserir(minhaLista, minhaLista->head, 15);
-    inserir(minhaLista, minhaLista->tail, 25);
-    inserir(minhaLista, NULL, 5);
-    inserir(minhaLista, minhaLista->tail, 35);
-    escreveLista(minhaLista);
+//     // Para inserir elementos
+//     inserir(minhaLista, NULL, 10);
+//     inserir(minhaLista, minhaLista->head, 15);
+//     inserir(minhaLista, minhaLista->tail, 25);
+//     inserir(minhaLista, NULL, 5);
+//     inserir(minhaLista, minhaLista->tail, 35);
+//     escreveLista(minhaLista);
 
-    // Para remover elementos
-    trataErro(remover(minhaLista, minhaLista->tail));
-    trataErro(remover(minhaLista, minhaLista->head));
-    escreveLista(minhaLista);
-    trataErro(remover(minhaLista, NULL));
-    escreveLista(minhaLista);
-    trataErro(remover(minhaLista, minhaLista->head));
-    escreveLista(minhaLista);
-    trataErro(remover(minhaLista, minhaLista->head));
-    escreveLista(minhaLista);
-    trataErro(remover(minhaLista, minhaLista->head));
-    escreveLista(minhaLista);
-    trataErro(remover(minhaLista, NULL));
-    escreveLista(minhaLista);
-    trataErro(remover(minhaLista, NULL));
-}
+//     // Para remover elementos
+//     trataErro(remover(minhaLista, minhaLista->tail));
+//     trataErro(remover(minhaLista, minhaLista->head));
+//     escreveLista(minhaLista);
+//     trataErro(remover(minhaLista, NULL));
+//     escreveLista(minhaLista);
+//     trataErro(remover(minhaLista, minhaLista->head));
+//     escreveLista(minhaLista);
+//     trataErro(remover(minhaLista, minhaLista->head));
+//     escreveLista(minhaLista);
+//     trataErro(remover(minhaLista, minhaLista->head));
+//     escreveLista(minhaLista);
+//     trataErro(remover(minhaLista, NULL));
+//     escreveLista(minhaLista);
+//     trataErro(remover(minhaLista, NULL));
+// }
 
 Nodo* criaNodo(int dado){
     Nodo* novo;
