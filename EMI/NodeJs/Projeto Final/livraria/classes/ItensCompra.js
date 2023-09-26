@@ -1,0 +1,4 @@
+class ItensCompra{
+    livro
+    compra
+}
