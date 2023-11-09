@@ -1,4 +1,0 @@
-class ItensCompra{
-    livro
-    compra
-}

@@ -17,7 +17,7 @@ typedef struct{
 Nodo* criaNodo(int);
 Lista* criaLista();
 int listaVazia(Lista*);
-void inserir(Lista*, Nodo*, int);
+Nodo* inserir(Lista*, Nodo*, int);
 int remover(Lista*, Nodo*);
 void trataErro(int);
 void escreveLista(Lista*);
@@ -44,9 +44,8 @@ Lista* criaLista(){
         lista->head = NULL;
         lista->tail = NULL;
         lista->size = 0;
-        return lista;
     }
-    return NULL;
+    return lista;
 }
 
 int listaVazia(Lista *lista){
@@ -63,9 +62,11 @@ void trataErro(int erro){
         printf("\nFim da lista!\n");
 }
 
-void inserir(Lista* lista, Nodo* pivo, int dado){
+Nodo* inserir(Lista* lista, Nodo* pivo, int dado){
 	Nodo *novo;
 	novo = criaNodo(dado);
+    if (novo == NULL)
+        return NULL; //Tratando o erro de overflow
 
 	if (pivo == NULL){
 		if (listaVazia(lista))
@@ -124,6 +125,21 @@ void escreveLista(Lista* lista){
         while (nodo!=NULL){
             printf("%i, ", nodo->dado);
             nodo = nodo->next;
+        }
+    }
+}
+
+void escreveListaCaudaCabeca(Lista* lista){
+    Nodo *nodo;
+
+    if (listaVazia(lista))
+         trataErro(-1);
+    else {
+        printf("\nElementos da lista: \n");
+        nodo = lista->tail;
+        while (nodo!=NULL){
+            printf("%i, ", nodo->dado);
+            nodo = nodo->prev;
         }
     }
 }

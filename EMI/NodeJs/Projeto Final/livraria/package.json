@@ -1,0 +1,15 @@
+{
+  "name": "livraria",
+  "version": "1.0.0",
+  "description": "Exemplo livraria",
+  "main": "main/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manassés",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  }
+}
