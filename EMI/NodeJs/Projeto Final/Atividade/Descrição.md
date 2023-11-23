@@ -1,7 +1,8 @@
 # Atividade de construção de BD usando SQlite3
 - Criar um projeto novo em um diretório especifico para a atividade => npm init
-- Configurar o projeto conforme orientado nas aulas anteriores
-- Construir a base de dados usando POO
+- Configurar o projeto conforme orientado nas aulas anteriores (editar o json e incluir "module)
+- Instalar o sqlit3 => npm install sqlite3
+- Construir a base de dados usando js com POO
 - Implementar as 4 operações CRUD (Create, Read, Update e Delete) para o projeto DAO (Orientado a Objetos):
 
 # Projeto
